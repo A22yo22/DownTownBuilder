@@ -5,14 +5,20 @@ using TMPro;
 
 public class CraftSettings : MonoBehaviour
 {
+    //the selected craftmode
     public string craftMoeSeleted;
 
+    //Craftmode Selected text
     public TMP_Text craftModeSlecetedInMenue;
+
+    //all recipes that are in the game
     [Header("0 = Stick, 1 = Head, 2 = None, 3 = Axt, 4 = Platine, 5 = CPU")]
     public GameObject[] craftRezept;
 
+    //GaneObject of the craft menue collection
     public GameObject CraftMenueOBJ;
     
+    //gameObjt with the CraftScript on it(the script is on every spawner)
     public GameObject crafterOBJ;
     
     void Update()
@@ -20,8 +26,10 @@ public class CraftSettings : MonoBehaviour
         if (CraftMenueOBJ.activeInHierarchy == true)
         {
             string craftMode = crafterOBJ.GetComponent<CraftScript>().craftMode;
+            //set craftMode to None
             if (craftMode == "")
             {
+                //sets the text on the left side
                 craftModeSlecetedInMenue.text = "None";
                 for (int i = 0; i < craftRezept.Length; i++)
                 {
@@ -29,6 +37,7 @@ public class CraftSettings : MonoBehaviour
                 }
                 craftRezept[2].SetActive(true);
             }
+            //set craftMode to sick
             else if (craftMode == "stick")
             {
                 craftModeSlecetedInMenue.text = "Axt Stick";
@@ -38,6 +47,7 @@ public class CraftSettings : MonoBehaviour
                 }
                 craftRezept[0].SetActive(true);
             }
+            //set craftMode to head
             else if (craftMode == "head")
             {
                 craftModeSlecetedInMenue.text = "Axt Head";
@@ -47,6 +57,7 @@ public class CraftSettings : MonoBehaviour
                 }
                 craftRezept[1].SetActive(true);
             }
+            //set craftMode to axt
             else if (craftMode == "axt")
             {
                 craftModeSlecetedInMenue.text = "Axt";
@@ -56,6 +67,7 @@ public class CraftSettings : MonoBehaviour
                 }
                 craftRezept[3].SetActive(true);
             }
+            //set craftMode to platine
             else if (craftMode == "platine")
             {
                 craftModeSlecetedInMenue.text = "Circuit Board";
@@ -66,6 +78,7 @@ public class CraftSettings : MonoBehaviour
 
                 craftRezept[4].SetActive(true);
             }
+            //set craftMode to cpu
             else if (craftMode == "cpu")
             {
                 craftModeSlecetedInMenue.text = "CPU";
@@ -79,6 +92,7 @@ public class CraftSettings : MonoBehaviour
         }
     }
     
+    //sets the deploys the CraftMode
     public void SetCrafterMode()
     {
         crafterOBJ.GetComponent<CraftScript>().craftMode = craftMoeSeleted;
@@ -86,6 +100,7 @@ public class CraftSettings : MonoBehaviour
         StartCoroutine(SetItemPickup());
     }
 
+    //calls the SetItemPickp function on the crafterScript
     IEnumerator SetItemPickup()
     {
         yield return new WaitForSeconds(0.1f);
@@ -93,6 +108,7 @@ public class CraftSettings : MonoBehaviour
         StartCoroutine(SetItemPickup());
     }
 
+    //CraftMode None Button
     public void None()
     {
         craftMoeSeleted = "";
@@ -105,6 +121,7 @@ public class CraftSettings : MonoBehaviour
         SetCrafterMode();
     }
     
+    //CraftMode Stick Button
     public void Stick()
     {
         craftMoeSeleted = "stick";
@@ -117,6 +134,7 @@ public class CraftSettings : MonoBehaviour
         SetCrafterMode();
     }
     
+    //CraftMode Head Button
     public void Head()
     {
         craftMoeSeleted = "head";
@@ -129,6 +147,7 @@ public class CraftSettings : MonoBehaviour
         SetCrafterMode();
     }
     
+    //CraftMode Axt Button
     public void Axt()
     {
         craftMoeSeleted = "axt";
@@ -141,6 +160,7 @@ public class CraftSettings : MonoBehaviour
         SetCrafterMode();
     }
     
+    //CraftMode Platine Button
     public void Platine()
     {
         craftMoeSeleted = "platine";
@@ -153,6 +173,7 @@ public class CraftSettings : MonoBehaviour
         SetCrafterMode();
     }
     
+    //CraftMode CPU Button
     public void CPU()
     {
         craftMoeSeleted = "cpu";

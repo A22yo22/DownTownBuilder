@@ -97,12 +97,14 @@ public class SaveAndLoadManager : MonoBehaviour
 
         for (int i = 0; i < placePos.Length - 2; i += 2)
         {
+            //if placePos is zero skip to the next rotation and name
             if (placePos[i] == 0)
             {
                 rot++;
                 x++;
             }
 
+            //spawn next mashine
             if (Physics.Raycast(new Vector3(placePos[i], 1, placePos[i + 1]), -Vector3.up, out RaycastHit hit, Mathf.Infinity, 6))
             {
                 if (placedObject[x] == "Spawner")

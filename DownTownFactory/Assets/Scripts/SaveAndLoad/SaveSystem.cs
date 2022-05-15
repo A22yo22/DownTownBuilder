@@ -5,6 +5,7 @@ using Assets.Scripts;
 
 public static class SaveSystem
 {
+    //Save function
     public static void SavePlayer(MoneyManager moneyManager, BuildManager buildManager, camerMovment camerMovment, SetPictures setPictures, PlacedObjectSaverManager placedObjectSaverManager)
     {
         BinaryFormatter formatter = new BinaryFormatter();
@@ -17,6 +18,7 @@ public static class SaveSystem
         stream.Close();
     }
 
+    //load function
     public static PlayerData loadPlayer()
     {
         string path = Application.persistentDataPath + "/player.bobs";

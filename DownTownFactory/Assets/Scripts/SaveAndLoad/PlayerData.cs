@@ -18,10 +18,10 @@ public class PlayerData
     //true if player wached the tutorial
     public bool tutorialPlayed;
 
-    //
+    //used to Select item in arrys like rot and names array in the BuildManager
     public int itemsArraySelected;
 
-    //
+    //also used Select places in arrays from the buildManager like the possition array
     public int itemsArraySelectedPos;
     
     //all positions of the objects spawned, 0=x 1=z

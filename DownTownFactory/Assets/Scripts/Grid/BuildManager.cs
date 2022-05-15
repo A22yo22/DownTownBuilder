@@ -17,8 +17,10 @@ namespace Assets.Scripts
         [Header("0 = Förderband, 1 = Spawner, 2 = Seller, 3 = Crafter")]
         public int[] itemsAmount;
 
+        //the ID that the spawner get when he gets spawned
         public int spawnerID = 1;
         
+        //
         public GameObject bfSpawn;
 
         public GameObject[] allObjectsSpawned = new GameObject[2500];

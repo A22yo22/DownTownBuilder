@@ -11,30 +11,45 @@ public class CraftScript : MonoBehaviour
     public int[] items;
     //0 = stick, 1 = head, 2 = axt, 3 = platine
     public GameObject[] spawnItems;
+
+    //Possition to spawn Crafted Objects
     public Transform spwanPos;
     
     [Header("0 = aluminium, 1 = wood, 2 diamond, 3 = gold, 4 = iron, 5 = stick, 6 = head, 7 = axt, 8 = Circuit Board")]
     [Header("9 = CPU")]
     public TMP_Text[] crafterItemsAmount;
     
+    //used to test what item enters(the name of it)
     public string[] tagNames;
+    //used to see wich items you need to craft somthing
     public string[] craftNames;
     
+    //the craftmode Selected by the craftStettings
     public string craftMode;
 
+    //item object with the craft information on them
     [Header("0 = stick, 1 = head, 2 = axt, 3 = Circuit Board, 4 = CPU")]
     public Items[] itemData;
 
+    //audioSource
     public AudioSource audioLister;
     
     [Header("Item Options")]
+    //items in crafter
     public int[] placeItem;
+
+    //items needed to craft thomthing
     public int[] itemsNeeded;
+
+    //items to spawn
     public int spawnItemNumber;
+
+    //the time an item needs to spawn
     public int timeToWait;
     
     private void OnTriggerEnter(Collider other)
     {
+        //test the item that enter who it is and adds ist to the item list
         for (int i = 0; i < tagNames.Length; i++)
         {
             if (other.GetComponent<Worth>().tagName == tagNames[i])
@@ -45,6 +60,7 @@ public class CraftScript : MonoBehaviour
         }
     }
 
+    //sets the items display for the items in the spawner
     public void SetItemAnzeiger(TMP_Text[] itemAmounts)
     {
         crafterItemsAmount = itemAmounts;
@@ -52,6 +68,7 @@ public class CraftScript : MonoBehaviour
 
     public void StartCrafting()
     {
+        //gets the materials needed to craft thomthing
         for (int i = 0; i < craftNames.Length; i++)
         {
             if (craftMode == craftNames[i])
@@ -66,6 +83,7 @@ public class CraftScript : MonoBehaviour
         StartCoroutine(Craft(craftMode, timeToWait));
     }
 
+    //sets the text for the items diplay 
     public void SetItemsPickedp()
     {
         for (int i = 0; i < crafterItemsAmount.Length; i++)
@@ -74,22 +92,15 @@ public class CraftScript : MonoBehaviour
         }
     }
 
+    //craft the object
     public IEnumerator Craft(string thing, int time)
     {
         askThing(thing, placeItem, itemsNeeded, spawnItemNumber);
         yield return new WaitForSeconds(time);
-        /*if (thing == "stick")
-        {
-            if (items[1] >= 2)
-            {
-                items[1] -= 2;
-                yield return new WaitForSeconds(1);
-                WaitThanSpawn(spawnItems[0]);
-            }
-        }*/
         StartCoroutine(Craft(craftMode, timeToWait));
     }
 
+    //subtracs the items when thomthing is crafted
     public void askThing(string thing, int[] placeItem, int[] itemsNeeded, int spawnItemNumber)
     {
         for (int i = 0; i < craftNames.Length; i++)

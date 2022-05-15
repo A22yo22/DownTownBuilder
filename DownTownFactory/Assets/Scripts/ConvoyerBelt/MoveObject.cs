@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class MoveObject : MonoBehaviour
 {
-    public GameObject iron;
-    
     private void OnTriggerStay(Collider other)
     {
+        //gets velocety of the item that is in the boxcollider
         float y = other.GetComponent<Rigidbody>().velocity.y;
         
+        //depending on the roration of the convoyerbelt the item gets a continius velocity
+        //in the right diriction
         switch (transform.rotation.y)
         {
             case 0f:
@@ -29,55 +30,9 @@ public class MoveObject : MonoBehaviour
                 break;
         }
     }
-
-    /*public GameObject[] gMJArray1;
-    private int gMJInt1;
-    
-    public GameObject[] gMJArray2;
-    private int gMJInt2;*/
-    
     private void OnTriggerEnter(Collider other)
     {
-        /*if (other.gameObject.tag == "Item1")
-        {
-            gMJArray1[gMJInt1] = other.gameObject;
-            gMJInt1++;
-            
-            if (gMJInt1 >= 10)
-            {
-                gMJInt1 = -10;
-                for (int i = 0; i < 10; i++)
-                {
-                    Destroy(gMJArray1[i]);
-                    gMJArray1[i] = null;
-                }
-                GameObject xGMJ = Instantiate(iron);
-                xGMJ.transform.position = transform.position;
-                xGMJ.tag = "Item2";
-                xGMJ.GetComponent<Worth>().worth = 50;
-            }
-        }
-        else if (other.gameObject.tag == "Item2")
-        {
-            
-            gMJArray2[gMJInt2] = other.gameObject;
-            gMJInt2++;
-            
-            if (gMJInt2 >= 10)
-            {
-                gMJInt1 = -10;
-                for (int i = 0; i < 10; i++)
-                {
-                    Destroy(gMJArray2[i]);
-                    gMJArray2[i] = null;
-                }
-                GameObject xGMJ = Instantiate(iron);
-                xGMJ.transform.position = transform.position;
-                xGMJ.tag = "Item2";
-                xGMJ.GetComponent<Worth>().worth = 500;
-            }
-        }*/
-
+        //if an item enters the boxcolider it gets directly teleported into the center of the convoyerbelt
         Vector3 x;
         switch (transform.rotation.y)
         {
@@ -102,13 +57,5 @@ public class MoveObject : MonoBehaviour
                 other.gameObject.transform.position = new Vector3(x.x, x.y, transform.position.z);
                 break;
         }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        /*if (other.gameObject.tag == "Item1")
-        {
-            gMJInt1--;
-        }*/
     }
 }

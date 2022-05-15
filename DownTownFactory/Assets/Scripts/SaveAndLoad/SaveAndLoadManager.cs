@@ -27,7 +27,7 @@ public class SaveAndLoadManager : MonoBehaviour
         //Creats a new PlayerData object
         PlayerData data = SaveSystem.loadPlayer();
         
-        //here the saved data gets loaded in the right variables
+        //here the saved data of the player gets loaded in the right variables of script plcedObjectSaverManaer
         moneyManager.SetMoney(data.money);
         buildManager.itemsAmount = data.itemsLeft;
         camerMovment.transform.position = new Vector3(data.pos[0], data.pos[1], data.pos[2]);
@@ -35,6 +35,8 @@ public class SaveAndLoadManager : MonoBehaviour
 
         buildManager.itemArraySelected = data.itemsArraySelected;
         buildManager.itemArraySelectedPos = data.itemsArraySelectedPos;
+
+        //loads the pos, rot, names and Selected items of the player in the variables of script plcedObjectSaverManaer
         placedObjectSaverManager.placePos = data.placePos;
         placedObjectSaverManager.placedRot = data.placedRot;
         placedObjectSaverManager.placedObject = data.placedObject;
@@ -52,24 +54,41 @@ public class SaveAndLoadManager : MonoBehaviour
 
         for (int i = 0; i < placePos.Length; i += 2)
         {
+            //saves the variables if they are the same to chabge them
             int z = placePos[i];
             int y = placePos[i + 1];
 
+            //when the array sorter starts the first number gets compared with themselfs so if they
+            //are the first time true nothing happens but if its true the second time true 
+            //passed is set to true
             bool pased = false;
+
+            //if i2 smaler then plcePoses length i2 plus 2
             for (int i2 = 0; i2 < placePos.Length; i2 += 2)
             {
+                //if z and y the same placePos 0 and 1(wich can´t happen because they can´t be on the
+                //same possition) the first possition gets set to 0 wich is equals null because the first
+                //possition on the grid is 15,5
                 if (z == placePos[i2])
                 {
                     if (y == placePos[i2 + 1])
                     {
+                        //if passed is true
                         if (pased)
                         {
+                            //set placePos 0 and 1 to 0/null
                             placePos[i] = 0;
                             placePos[i + 1] = 0;
+
+                            //the same to the rotation and divided by 2 because i is every loop plus 2
+                            //and divided by 2 is the right arry point
                             placeRot[i/2] = 0;
+
+                            //the name is also set to null
                             placedObject[i/2] = null;
                         }
 
+                        //passed once so passed is true as described above
                         pased = true;
                     }
                 }

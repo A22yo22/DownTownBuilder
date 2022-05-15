@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class SaveAndLoadManager : MonoBehaviour
 {
+    //get´s the script reveraces
     public MoneyManager moneyManager;
     public BuildManager buildManager;
     public camerMovment camerMovment;
@@ -14,15 +15,19 @@ public class SaveAndLoadManager : MonoBehaviour
     [Header("0 = Förderband, 1 = Spawner, 2 = Seller, 3 = Crafter")]
     public GameObject[] objects;
     
+    //Saves
     public void Save()
     {
         SaveSystem.SavePlayer(moneyManager, buildManager, camerMovment, setPictures, placedObjectSaverManager);
     }
 
+    //Load´s the data
     public void Load()
     {
+        //Creats a new PlayerData object
         PlayerData data = SaveSystem.loadPlayer();
         
+        //here the saved data gets loaded in the right variables
         moneyManager.SetMoney(data.money);
         buildManager.itemsAmount = data.itemsLeft;
         camerMovment.transform.position = new Vector3(data.pos[0], data.pos[1], data.pos[2]);
@@ -35,9 +40,11 @@ public class SaveAndLoadManager : MonoBehaviour
         placedObjectSaverManager.placedObject = data.placedObject;
         placedObjectSaverManager.itemSelectedSpw = data.itemSelectedSpw;
 
+        //spawns the mashines
         spawnObjects(data.placePos, data.placedRot, data.placedObject, data.itemSelectedSpw);
     }
 
+    //this function spawns the mashines with the right data in them as they were when saved
     public void spawnObjects(int[] placePos, int[] placeRot, string[] placedObject, int[] itemSelectedSpw)
     {
         int x = 0;

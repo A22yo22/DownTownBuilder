@@ -7,10 +7,13 @@ using UnityEngine.Audio;
 
 public class DestroyManger : MonoBehaviour
 {
+    //referances to the buildmanager
     public BuildManager buildManager;
     
+    //variable to see if the destroy mose is active
     public bool destroMode = false;
 
+    //Sounds
     public AudioSource audioSource;
     public AudioClip[] destroySound;
     public AudioClip[] openSound;
@@ -33,9 +36,13 @@ public class DestroyManger : MonoBehaviour
                             {
                                 audioSource.clip = destroySound[Random.Range(0, destroySound.Length)];
                                 audioSource.Play();
+
+                                //Destroys the hit object
                                 Destroy(hit.collider.transform.root.gameObject);
                                 if (Physics.Raycast(hit.collider.transform.position, -Vector3.up, out RaycastHit hit2, Mathf.Infinity, 6))
                                 {
+                                    //gets them manger Script of the hit object and calls the function set free
+                                    //SetFree makes the grid place usable agan
                                     hit2.collider.transform.root.gameObject.GetComponent<Manger>().SetFree();
                                 }
                             }
@@ -53,8 +60,10 @@ public class DestroyManger : MonoBehaviour
         }
     }
 
+    //Activate delite mode buttun
     public void SetDeleteMode()
     {
+        //plays sound
         audioSource.clip = openSound[Random.Range(0, openSound.Length)];
         audioSource.Play();
         destroMode = true;

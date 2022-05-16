@@ -20,22 +20,29 @@ namespace Assets.Scripts
         //the ID that the spawner get when he gets spawned
         public int spawnerID = 1;
         
-        //
+        //when a object to build is selected the "previous object" is linked here
         public GameObject bfSpawn;
 
+        //here all objects that get spawned are linked here to access them lateer
         public GameObject[] allObjectsSpawned = new GameObject[2500];
         
+        //references to some scripts
         public MoneyManager moneymanagerScript;
         public CraftSettings craftSettings;
         public PlacedObjectSaverManager placedObjectSaverManager;
 
+        //rotation of the objects
         public float objectRot;
 
+        //the amount of objects left are shown in this Text
+        //for example you have 4 spawner left the four gets shown here
         public TMP_Text[] ItemsAmountObjects;
         
+        //displace again the items left but this time in the spawner
         [Header("0 = aluminium, 1 = wood, 2 diamond, 3 = gold, 4 = iron, 5 = stick, 6 = head, 7 = axt, 8 = Platine, 9 = CPU")]
         public TMP_Text[] crafterItemsAmount;
 
+        //sounds 
         public AudioSource audioSource1;
         public AudioSource audioSource2;
         public AudioClip[] placeSound;
@@ -45,10 +52,14 @@ namespace Assets.Scripts
 
         void Start()
         {
+            //get the money Script
             moneymanagerScript = FindObjectOfType<MoneyManager>();
+
+            //updates the objects left in the inventory
             SetItemsAmount();
         }
 
+        //updates the objects left in the inventory
         public void SetItemsAmount()
         {
             ItemsAmountObjects[0].text = itemsAmount[1].ToString();
@@ -57,6 +68,7 @@ namespace Assets.Scripts
             ItemsAmountObjects[3].text = itemsAmount[3].ToString();
         }
         
+        //
         public bool itemSlected = false;
         public int itemArraySelected;
         public int itemArraySelectedPos;
@@ -152,8 +164,10 @@ namespace Assets.Scripts
         }
 
         private int allObjectsSPawnedArrayCount;
+        //Spawns the objects
         public void SpawnObjectsManager(int itemAmountPos, RaycastHit hit, string spawnedName = "")
         {
+            //sets the pos, rot, name
             placedObjectSaverManager.placePos[itemArraySelectedPos] = (int)hit.collider.gameObject.GetComponent<Manger>().gameObject.transform.position.x;
             placedObjectSaverManager.placePos[itemArraySelectedPos + 1] = (int)hit.collider.gameObject.GetComponent<Manger>().gameObject.transform.position.z;
             placedObjectSaverManager.placedRot[itemArraySelected] = (int)objectRot;
@@ -163,20 +177,25 @@ namespace Assets.Scripts
             
             itemsAmount[itemAmountPos]--;
             
+            //Builds the object
             hit.collider.gameObject.GetComponent<Manger>().crafterItemsAmount = crafterItemsAmount;
             hit.collider.gameObject.GetComponent<Manger>().BuildManager(objects[objectSelected], objectRot, spawnedName, 0, spawnerID);
             spawnerID++;
 
+            //sets the object in the array to access it later
             allObjectsSpawned[allObjectsSPawnedArrayCount] = objects[objectSelected];
             allObjectsSPawnedArrayCount++;
             
+            //refreches the UI
             bfSpawn.transform.position = new Vector3(-100, -10, 10);
             SetItemsAmount();
             
+            //plays sound
             audioSource1.clip = placeSound[Random.Range(0, placeSound.Length)];
             audioSource1.Play();
         }
         
+        //gets the mouseweel rotation to rotate the mashines
         void MousWeelRot()
         {
             if (Input.GetAxis("Mouse ScrollWheel") > 0f) //FW
@@ -206,7 +225,7 @@ namespace Assets.Scripts
             }
         }
         
-        //Build Stuff
+        //Builds the spawner
         public void SetSpawner()
         {
             objectSelected = 1;
@@ -218,6 +237,7 @@ namespace Assets.Scripts
             audioSource1.Play();
         }
 
+        //Builds the spawner
         public void SetLaufband()
         {
             objectSelected = 0;
@@ -229,6 +249,7 @@ namespace Assets.Scripts
             audioSource1.Play();
         }
         
+        //Builds the Seller
         public void SetSeller()
         {
             objectSelected = 2;
@@ -251,7 +272,7 @@ namespace Assets.Scripts
             audioSource1.Play();
         }
         
-        //Buy Stuff
+        //Buy Spawner button
         public void BuySpawner()
         {
             if (moneymanagerScript.money >= 50)
@@ -268,6 +289,7 @@ namespace Assets.Scripts
             }
         }
 
+        //buy convoyerbelt button
         public void BuyLaufband()
         {
             if (moneymanagerScript.money >= 10)
@@ -284,6 +306,7 @@ namespace Assets.Scripts
             }
         }
 
+        //buy Seller button
         public void BuySeller()
         {
             if (moneymanagerScript.money >= 50)
@@ -300,6 +323,7 @@ namespace Assets.Scripts
             }
         }
         
+        //buy crafter button
         public void BuyCrafter()
         {
             if (moneymanagerScript.money >= 100)

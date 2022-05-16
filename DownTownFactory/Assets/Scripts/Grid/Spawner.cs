@@ -5,15 +5,21 @@ namespace Assets.Scripts
 {
     public class Spawner : MonoBehaviour
     {
+        //reference to Tile prefab
         public GameObject Tile;
+
+        //position for the tile to spawn
         private Vector3 pos;
+
+        //Size of the grid
         public Vector2 TilleSize;
         
-        
+        //reference to SaveAndLoadManager Script
         public SaveAndLoadManager saveAndLoadManager;
         
         void Start()
         {
+            //gets the grid size and sets it int the TileSpawner function
             TileSpawner((int)TilleSize.x, (int)TilleSize.y);
             StartCoroutine(load());
             StartCoroutine(SaveTimer());

@@ -68,25 +68,35 @@ namespace Assets.Scripts
             ItemsAmountObjects[3].text = itemsAmount[3].ToString();
         }
         
-        //
+        //if an item buttun was pressed set itemSelected to true
         public bool itemSlected = false;
+
+        //used to get the pos names rot und itemsInSpw
         public int itemArraySelected;
         public int itemArraySelectedPos;
         
         void Update()
         {
+            //gets mouse rotation
             MousWeelRot();
+
+            //if item selected 
             if (itemSlected)
             {
+                //left mousebutton pressed
                 if (Input.GetMouseButtonDown(0))
                 {
+                    //not on an UI
                     if (!EventSystem.current.IsPointerOverGameObject())
                     {
+                        //shoot ray to a grid
                         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                         if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, 6))
                         {
+                            //if raycast it a tile / place
                             if (hit.collider.tag == "Place")
                             {
+                                //Spawn the mashine
                                 switch (objectSelected)
                                 { 
                                     case 0:
@@ -121,6 +131,7 @@ namespace Assets.Scripts
                             }
                             else
                             {
+                                //play sound
                                 audioSource2.clip = cantbuySound[Random.Range(0, cantbuySound.Length)];
                                 audioSource2.Play();
                             }
@@ -136,6 +147,7 @@ namespace Assets.Scripts
                     {
                         if (hit2.collider.tag == "Place")
                         {
+                            //spawn previus
                             switch (objectSelected)
                             {
                                 case 0:
@@ -156,6 +168,7 @@ namespace Assets.Scripts
                 }
             }
 
+            //if right mouse button is pressed exit Placemode
             if (Input.GetMouseButtonDown(1))
             {
                 itemSlected = false;

@@ -48,10 +48,18 @@ public class SaveWithList : MonoBehaviour
     public void LoadGame()
     {
         int posListLength = PlayerPrefs.GetInt("placePosLength");
+        int rotListLength = PlayerPrefs.GetInt("placeRotLength");
 
-        for(int i =0; i < posListLength; )
+        for(int i = 0; i < posListLength; i++)
         {
+            placePos.Add(PlayerPrefs.GetInt("placePos" + 1));
+        }
 
+        for (int i = 0; i < rotListLength; i++)
+        {
+            placeRot.Add(PlayerPrefs.GetInt("placeRot" + 1));
+            placedObject.Add(PlayerPrefs.GetString("placedObject" + 1));
+            itemSelectedSpw.Add(PlayerPrefs.GetInt("itemSelectedSpw" + 1));
         }
     }
 }

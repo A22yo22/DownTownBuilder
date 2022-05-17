@@ -55,7 +55,7 @@ public class SaveAndLoadManager : MonoBehaviour
         int x = 0;
         int rot = 0;
 
-        for (int i = 0; i < placePos.Count; i += 2)
+        for (int i = 0; i < placePos.Count - 2; i += 2)
         {
             //saves the variables if they are the same to chabge them
             int z = placePos[i];
@@ -67,7 +67,7 @@ public class SaveAndLoadManager : MonoBehaviour
             bool pased = false;
 
             //if i2 smaler then plcePoses length i2 plus 2
-            for (int i2 = 0; i2 < placePos.Count; i2 += 2)
+            for (int i2 = 0; i2 < placePos.Count - 2; i2 += 2)
             {
                 //if z and y the same placePos 0 and 1(wich can´t happen because they can´t be on the
                 //same possition) the first possition gets set to 0 wich is equals null because the first
@@ -80,21 +80,25 @@ public class SaveAndLoadManager : MonoBehaviour
                         if (pased)
                         {
                             //set placePos 0 and 1 to 0/null
-                            placePos[i] = 0;
-                            placePos[i + 1] = 0;
+                            SaveWithList.placePos.RemoveAt(i);
+                            SaveWithList.placePos.RemoveAt(i + 1);
 
                             //the same to the rotation and divided by 2 because i is every loop plus 2
                             //and divided by 2 is the right arry point
-                            placeRot[i/2] = 0;
+                            SaveWithList.placeRot.RemoveAt(i / 2);
 
                             //the name is also set to null
-                            placedObject[i/2] = null;
+                            SaveWithList.placedObject.RemoveAt(i / 2);
                         }
 
                         //passed once so passed is true as described above
                         pased = true;
                     }
                 }
+            }
+            for(int i2 = 0; 12 < placeRot.Count; i2++)
+            {
+
             }
         }
 

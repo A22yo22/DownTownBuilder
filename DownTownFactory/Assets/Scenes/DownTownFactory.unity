@@ -32320,6 +32320,7 @@ MonoBehaviour:
   moneymanagerScript: {fileID: 1905711074}
   craftSettings: {fileID: 1905711076}
   placedObjectSaverManager: {fileID: 1717151955}
+  saveWithList: {fileID: 1905711079}
   objectRot: 0
   ItemsAmountObjects:
   - {fileID: 1498663896}
@@ -34476,7 +34477,6 @@ MonoBehaviour:
   buildManager: {fileID: 1751369379}
   camerMovment: {fileID: 1829793224}
   setPictures: {fileID: 421460753}
-  placedObjectSaverManager: {fileID: 1717151955}
   SaveWithList: {fileID: 1905711079}
   objects:
   - {fileID: 1443699623742940284, guid: aaca9c151bc005b4a9d9cc029416e8ff, type: 3}

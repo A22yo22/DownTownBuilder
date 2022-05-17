@@ -6,13 +6,13 @@ using Assets.Scripts;
 public static class SaveSystem
 {
     //Save function
-    public static void SavePlayer(MoneyManager moneyManager, BuildManager buildManager, camerMovment camerMovment, SetPictures setPictures, PlacedObjectSaverManager placedObjectSaverManager)
+    public static void SavePlayer(MoneyManager moneyManager, BuildManager buildManager, camerMovment camerMovment, SetPictures setPictures)
     {
         BinaryFormatter formatter = new BinaryFormatter();
         string path = Application.persistentDataPath + "/player.bobs";
         FileStream stream = new FileStream(path, FileMode.Create);
 
-        PlayerData data = new PlayerData(moneyManager, buildManager, camerMovment, setPictures, placedObjectSaverManager);
+        PlayerData data = new PlayerData(moneyManager, buildManager, camerMovment, setPictures);
         
         formatter.Serialize(stream, data);
         stream.Close();

@@ -37,7 +37,7 @@ public class PlayerData
     public int[] itemSelectedSpw;
 
     //Class to save the date in the objects
-    public PlayerData(MoneyManager moneyManager, BuildManager buildManager, camerMovment camerMovment, SetPictures setPictures, PlacedObjectSaverManager placedObjectSaverManager)
+    public PlayerData(MoneyManager moneyManager, BuildManager buildManager, camerMovment camerMovment, SetPictures setPictures)
     {
         money = moneyManager.money;
         itemsLeft = buildManager.itemsAmount;
@@ -48,12 +48,5 @@ public class PlayerData
         pos[2] = camerMovment.transform.position.z;
 
         tutorialPlayed = setPictures.tutorialPlayed;
-
-        itemsArraySelected = buildManager.itemArraySelected;
-        itemsArraySelectedPos = buildManager.itemArraySelectedPos;
-        placePos = placedObjectSaverManager.placePos;
-        placedRot = placedObjectSaverManager.placedRot;
-        placedObject = placedObjectSaverManager.placedObject;
-        itemSelectedSpw = placedObjectSaverManager.itemSelectedSpw;
     }
 }

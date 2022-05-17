@@ -30,6 +30,7 @@ namespace Assets.Scripts
         public MoneyManager moneymanagerScript;
         public CraftSettings craftSettings;
         public PlacedObjectSaverManager placedObjectSaverManager;
+        public SaveWithList saveWithList;
 
         //rotation of the objects
         public float objectRot;
@@ -181,12 +182,17 @@ namespace Assets.Scripts
         public void SpawnObjectsManager(int itemAmountPos, RaycastHit hit, string spawnedName = "")
         {
             //sets the pos, rot, name
-            placedObjectSaverManager.placePos[itemArraySelectedPos] = (int)hit.collider.gameObject.GetComponent<Manger>().gameObject.transform.position.x;
-            placedObjectSaverManager.placePos[itemArraySelectedPos + 1] = (int)hit.collider.gameObject.GetComponent<Manger>().gameObject.transform.position.z;
-            placedObjectSaverManager.placedRot[itemArraySelected] = (int)objectRot;
-            placedObjectSaverManager.placedObject[itemArraySelected] = spawnedName;
-            itemArraySelected++;
-            itemArraySelectedPos += 2;
+            //placedObjectSaverManager.placePos[itemArraySelectedPos] = (int)hit.collider.gameObject.GetComponent<Manger>().gameObject.transform.position.x;
+            //placedObjectSaverManager.placePos[itemArraySelectedPos + 1] = (int)hit.collider.gameObject.GetComponent<Manger>().gameObject.transform.position.z;
+            //placedObjectSaverManager.placedRot[itemArraySelected] = (int)objectRot;
+            //placedObjectSaverManager.placedObject[itemArraySelected] = spawnedName;
+            //itemArraySelected++;
+            //itemArraySelectedPos += 2;
+
+            saveWithList.placePos.Add((int)hit.collider.gameObject.GetComponent<Manger>().gameObject.transform.position.x);
+            saveWithList.placePos.Add((int)hit.collider.gameObject.GetComponent<Manger>().gameObject.transform.position.z);
+            saveWithList.placeRot.Add((int)objectRot);
+            saveWithList.placedObject.Add(spawnedName);
             
             itemsAmount[itemAmountPos]--;
             

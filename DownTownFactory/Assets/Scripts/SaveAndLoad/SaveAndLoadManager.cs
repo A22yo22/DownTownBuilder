@@ -10,7 +10,7 @@ public class SaveAndLoadManager : MonoBehaviour
     public BuildManager buildManager;
     public camerMovment camerMovment;
     public SetPictures setPictures;
-    public PlacedObjectSaverManager placedObjectSaverManager;
+    public SaveWithList SaveWithList;
 
     [Header("0 = Förderband, 1 = Spawner, 2 = Seller, 3 = Crafter")]
     public GameObject[] objects;
@@ -18,12 +18,14 @@ public class SaveAndLoadManager : MonoBehaviour
     //Saves
     public void Save()
     {
-        SaveSystem.SavePlayer(moneyManager, buildManager, camerMovment, setPictures, placedObjectSaverManager);
+        SaveWithList.SaveGame();
+        SaveSystem.SavePlayer(moneyManager, buildManager, camerMovment, setPictures);
     }
 
     //Load´s the data
     public void Load()
     {
+        SaveWithList.LoadGame();
         //Creats a new PlayerData object
         PlayerData data = SaveSystem.loadPlayer();
         
@@ -33,7 +35,7 @@ public class SaveAndLoadManager : MonoBehaviour
         camerMovment.transform.position = new Vector3(data.pos[0], data.pos[1], data.pos[2]);
         setPictures.tutorialPlayed = data.tutorialPlayed;
 
-        buildManager.itemArraySelected = data.itemsArraySelected;
+        /*buildManager.itemArraySelected = data.itemsArraySelected;
         buildManager.itemArraySelectedPos = data.itemsArraySelectedPos;
 
         //loads the pos, rot, names and Selected items of the player in the variables of script plcedObjectSaverManaer
@@ -41,18 +43,19 @@ public class SaveAndLoadManager : MonoBehaviour
         placedObjectSaverManager.placedRot = data.placedRot;
         placedObjectSaverManager.placedObject = data.placedObject;
         placedObjectSaverManager.itemSelectedSpw = data.itemSelectedSpw;
+        */
 
         //spawns the mashines
-        spawnObjects(data.placePos, data.placedRot, data.placedObject, data.itemSelectedSpw);
+        spawnObjects(SaveWithList.placePos, SaveWithList.placeRot, SaveWithList.placedObject, SaveWithList.itemSelectedSpw);
     }
 
     //this function spawns the mashines with the right data in them as they were when saved
-    public void spawnObjects(int[] placePos, int[] placeRot, string[] placedObject, int[] itemSelectedSpw)
+    public void spawnObjects(List<int> placePos, List<int> placeRot, List<string> placedObject, List<int> itemSelectedSpw)
     {
         int x = 0;
         int rot = 0;
 
-        for (int i = 0; i < placePos.Length; i += 2)
+        for (int i = 0; i < placePos.Count; i += 2)
         {
             //saves the variables if they are the same to chabge them
             int z = placePos[i];
@@ -64,7 +67,7 @@ public class SaveAndLoadManager : MonoBehaviour
             bool pased = false;
 
             //if i2 smaler then plcePoses length i2 plus 2
-            for (int i2 = 0; i2 < placePos.Length; i2 += 2)
+            for (int i2 = 0; i2 < placePos.Count; i2 += 2)
             {
                 //if z and y the same placePos 0 and 1(wich can´t happen because they can´t be on the
                 //same possition) the first possition gets set to 0 wich is equals null because the first
@@ -95,7 +98,7 @@ public class SaveAndLoadManager : MonoBehaviour
             }
         }
 
-        for (int i = 0; i < placePos.Length - 2; i += 2)
+        for (int i = 0; i < placePos.Count - 2; i += 2)
         {
             //if placePos is zero skip to the next rotation and name
             if (placePos[i] == 0)

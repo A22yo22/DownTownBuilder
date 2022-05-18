@@ -193,6 +193,14 @@ namespace Assets.Scripts
             saveWithList.placePos.Add((int)hit.collider.gameObject.GetComponent<Manger>().gameObject.transform.position.z);
             saveWithList.placeRot.Add((int)objectRot);
             saveWithList.placedObject.Add(spawnedName);
+            if(spawnedName == "Spawner")
+            {
+                saveWithList.itemSelectedSpw.Add(4);
+            }
+            else
+            {
+                saveWithList.itemSelectedSpw.Add(-1);
+            }
             
             itemsAmount[itemAmountPos]--;
             

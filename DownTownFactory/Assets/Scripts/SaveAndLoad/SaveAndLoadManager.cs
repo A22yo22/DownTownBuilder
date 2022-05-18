@@ -55,7 +55,7 @@ public class SaveAndLoadManager : MonoBehaviour
         int x = 0;
         int rot = 0;
 
-        for (int i = 0; i < placePos.Count - 2; i += 2)
+        for (int i = 2; i < placePos.Count+2; i += 2)
         {
             //saves the variables if they are the same to chabge them
             int z = placePos[i];
@@ -67,21 +67,21 @@ public class SaveAndLoadManager : MonoBehaviour
             bool pased = false;
 
             //if i2 smaler then plcePoses length i2 plus 2
-            for (int i2 = 0; i2 < placePos.Count - 2; i2 += 2)
+            for (int i2 = 0; i2 < placePos.Count+2; i2 += 2)
             {
                 //if z and y the same placePos 0 and 1(wich can´t happen because they can´t be on the
                 //same possition) the first possition gets set to 0 wich is equals null because the first
                 //possition on the grid is 15,5
-                if (z == placePos[i2])
+                if (z == placePos[i2-2])
                 {
-                    if (y == placePos[i2 + 1])
+                    if (y == placePos[i2 - 1])
                     {
                         //if passed is true
                         if (pased)
                         {
                             //set placePos 0 and 1 to 0/null
-                            SaveWithList.placePos.RemoveAt(i);
-                            SaveWithList.placePos.RemoveAt(i + 1);
+                            SaveWithList.placePos.RemoveAt(i-2);
+                            SaveWithList.placePos.RemoveAt(i - 1);
 
                             //the same to the rotation and divided by 2 because i is every loop plus 2
                             //and divided by 2 is the right arry point
@@ -96,23 +96,19 @@ public class SaveAndLoadManager : MonoBehaviour
                     }
                 }
             }
-            for(int i2 = 0; 12 < placeRot.Count; i2++)
-            {
-
-            }
         }
 
-        for (int i = 0; i < placePos.Count - 2; i += 2)
+        for (int i = 2; i < placePos.Count+2; i += 2)
         {
             //if placePos is zero skip to the next rotation and name
-            if (placePos[i] == 0)
+            if (placePos[i-2] == 0)
             {
                 rot++;
                 x++;
             }
 
             //spawn next mashine
-            if (Physics.Raycast(new Vector3(placePos[i], 1, placePos[i + 1]), -Vector3.up, out RaycastHit hit, Mathf.Infinity, 6))
+            if (Physics.Raycast(new Vector3(placePos[i-2], 1, placePos[i - 1]), -Vector3.up, out RaycastHit hit, Mathf.Infinity, 6))
             {
                 if (placedObject[x] == "Spawner")
                 {

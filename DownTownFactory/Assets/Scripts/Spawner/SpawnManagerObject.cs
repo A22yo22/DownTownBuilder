@@ -13,9 +13,6 @@ public class SpawnManagerObject : MonoBehaviour
     
     //the item selected to spawn a mashine
     public int itemSeleted = 4;
-
-    //number of the spawner
-    public int spawnerNumber;
     
     //possition where the item gets spawned
     public Transform spawnPos;

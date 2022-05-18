@@ -29,7 +29,6 @@ namespace Assets.Scripts
         }
 
         //builds and the selected mashine on the tile
-        private int spawnerNumber;
         public void BuildManager(GameObject spawnObject, float rot, string name = "", int itemSelectedSpw = 4, int spawnerID = 0)
         {
             //sets used to true because a mashine has plced on it now
@@ -50,10 +49,8 @@ namespace Assets.Scripts
             {
                 //should LOAD the data of the spawn data if it exists
                 spawnObject.GetComponent<SpawnManagerObject>().itemSeleted = itemSelectedSpw;
-                spawnObject.GetComponent<SpawnManagerObject>().spawnerNumber = spawnerNumber;
                 spawnObject.GetComponent<SpawnManagerObject>().spawnerID = spawnerID;
                 spawnerID++;
-                spawnerNumber++;
             }
             //if name is Crafter
             else if (name == "Crafter")

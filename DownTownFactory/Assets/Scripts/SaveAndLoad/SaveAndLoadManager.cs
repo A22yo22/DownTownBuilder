@@ -58,8 +58,8 @@ public class SaveAndLoadManager : MonoBehaviour
         for (int i = 2; i < placePos.Count+2; i += 2)
         {
             //saves the variables if they are the same to chabge them
-            int z = placePos[i];
-            int y = placePos[i + 1];
+            int z = placePos[i-2];
+            int y = placePos[i - 1];
 
             //when the array sorter starts the first number gets compared with themselfs so if they
             //are the first time true nothing happens but if its true the second time true 
@@ -67,7 +67,7 @@ public class SaveAndLoadManager : MonoBehaviour
             bool pased = false;
 
             //if i2 smaler then plcePoses length i2 plus 2
-            for (int i2 = 0; i2 < placePos.Count+2; i2 += 2)
+            for (int i2 = 2; i2 < placePos.Count+2; i2 += 2)
             {
                 //if z and y the same placePos 0 and 1(wich can´t happen because they can´t be on the
                 //same possition) the first possition gets set to 0 wich is equals null because the first
@@ -81,11 +81,13 @@ public class SaveAndLoadManager : MonoBehaviour
                         {
                             //set placePos 0 and 1 to 0/null
                             SaveWithList.placePos.RemoveAt(i-2);
-                            SaveWithList.placePos.RemoveAt(i - 1);
+                            SaveWithList.placePos.RemoveAt(i-2);
+                            Debug.Log(i - 2);
 
                             //the same to the rotation and divided by 2 because i is every loop plus 2
                             //and divided by 2 is the right arry point
                             SaveWithList.placeRot.RemoveAt(i / 2);
+                            Debug.Log(i / 2);
 
                             //the name is also set to null
                             SaveWithList.placedObject.RemoveAt(i / 2);

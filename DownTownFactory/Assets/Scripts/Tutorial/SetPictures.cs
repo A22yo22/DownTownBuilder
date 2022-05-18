@@ -24,7 +24,13 @@ public class SetPictures : MonoBehaviour
 
     void Start()
     {
-        //loads the saved game files
+        //wait 0.5 sec to set the Tiled than spawn loads
+        StartCoroutine(LoadTime());
+    }
+
+    IEnumerator LoadTime()
+    {
+        yield return new WaitForSeconds(0.5f);
         saveAndLoadManager.Load();
     }
     

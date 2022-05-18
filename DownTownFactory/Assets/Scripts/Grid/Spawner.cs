@@ -23,7 +23,7 @@ namespace Assets.Scripts
             TileSpawner((int)TilleSize.x, (int)TilleSize.y);
 
             //starts load loop every 5 sec
-            StartCoroutine(load());
+            //StartCoroutine(load());
 
             //starts Save timer to save the game
             StartCoroutine(SaveTimer());

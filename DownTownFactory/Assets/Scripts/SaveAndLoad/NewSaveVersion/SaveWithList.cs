@@ -32,34 +32,35 @@ public class SaveWithList : MonoBehaviour
         //Can´t be used because the placePos has two times as much plces as the other lists
         for(int i = 0; i < placePos.Count; i++)
         {
-            PlayerPrefs.SetInt("placePos" + 1, placePos[i]);
+            PlayerPrefs.SetInt("placePos" + i, placePos[i]);
         }
 
         //here all objects can be used because they all have the same length
         for (int i = 0; i < placeRot.Count; i++)
         {
-            PlayerPrefs.SetInt("placeRot" + 1, placeRot[i]);
-            PlayerPrefs.SetString("placedObject" + 1, placedObject[i]);
-            PlayerPrefs.SetInt("itemSelectedSpw" + 1, itemSelectedSpw[i]);
+            PlayerPrefs.SetInt("placeRot" + i, placeRot[i]);
+            PlayerPrefs.SetString("placedObject" + i, placedObject[i]);
+            PlayerPrefs.SetInt("itemSelectedSpw" + i, itemSelectedSpw[i]);
         }
     }
 
     //Loads the game
     public void LoadGame()
     {
+        Debug.Log("Loded");
         int posListLength = PlayerPrefs.GetInt("placePosLength");
         int rotListLength = PlayerPrefs.GetInt("placeRotLength");
 
         for(int i = 0; i < posListLength; i++)
         {
-            placePos.Add(PlayerPrefs.GetInt("placePos" + 1));
+            placePos.Add(PlayerPrefs.GetInt("placePos" + i));
         }
 
         for (int i = 0; i < rotListLength; i++)
         {
-            placeRot.Add(PlayerPrefs.GetInt("placeRot" + 1));
-            placedObject.Add(PlayerPrefs.GetString("placedObject" + 1));
-            itemSelectedSpw.Add(PlayerPrefs.GetInt("itemSelectedSpw" + 1));
+            placeRot.Add(PlayerPrefs.GetInt("placeRot" + i));
+            placedObject.Add(PlayerPrefs.GetString("placedObject" + i));
+            itemSelectedSpw.Add(PlayerPrefs.GetInt("itemSelectedSpw" + i));
         }
     }
 }

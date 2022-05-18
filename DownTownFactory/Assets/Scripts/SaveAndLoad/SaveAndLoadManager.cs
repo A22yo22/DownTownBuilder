@@ -19,7 +19,7 @@ public class SaveAndLoadManager : MonoBehaviour
     public void Save()
     {
         SaveWithList.SaveGame();
-        SaveSystem.SavePlayer(moneyManager, buildManager, camerMovment, setPictures);
+        //SaveSystem.SavePlayer(moneyManager, buildManager, camerMovment, setPictures);
     }
 
     //Load´s the data
@@ -27,15 +27,15 @@ public class SaveAndLoadManager : MonoBehaviour
     {
         SaveWithList.LoadGame();
         //Creats a new PlayerData object
-        PlayerData data = SaveSystem.loadPlayer();
+        //PlayerData data = SaveSystem.loadPlayer();
         
         //here the saved data of the player gets loaded in the right variables of script plcedObjectSaverManaer
-        moneyManager.SetMoney(data.money);
+        /*moneyManager.SetMoney(data.money);
         buildManager.itemsAmount = data.itemsLeft;
         camerMovment.transform.position = new Vector3(data.pos[0], data.pos[1], data.pos[2]);
         setPictures.tutorialPlayed = data.tutorialPlayed;
 
-        /*buildManager.itemArraySelected = data.itemsArraySelected;
+        buildManager.itemArraySelected = data.itemsArraySelected;
         buildManager.itemArraySelectedPos = data.itemsArraySelectedPos;
 
         //loads the pos, rot, names and Selected items of the player in the variables of script plcedObjectSaverManaer

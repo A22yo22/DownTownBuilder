@@ -6,11 +6,11 @@ using UnityEngine;
 [System.Serializable]
 public class PlayerData
 {
-    //money
+    /*//money
     public int money;
 
     //items that the player have left in his Inventory
-    public int[] itemsLeft;
+    public List<int> itemsLeft;
 
     //Camera position / Player position
     public float[] pos;
@@ -48,5 +48,5 @@ public class PlayerData
         pos[2] = camerMovment.transform.position.z;
 
         tutorialPlayed = setPictures.tutorialPlayed;
-    }
+    }*/
 }

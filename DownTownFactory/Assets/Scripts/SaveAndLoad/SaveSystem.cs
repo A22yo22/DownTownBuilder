@@ -5,7 +5,7 @@ using Assets.Scripts;
 
 public static class SaveSystem
 {
-    //Save function
+    /*//Save function
     public static void SavePlayer(MoneyManager moneyManager, BuildManager buildManager, camerMovment camerMovment, SetPictures setPictures)
     {
         BinaryFormatter formatter = new BinaryFormatter();
@@ -38,5 +38,5 @@ public static class SaveSystem
         {
             return null;
         }
-    }
+    }*/
 }

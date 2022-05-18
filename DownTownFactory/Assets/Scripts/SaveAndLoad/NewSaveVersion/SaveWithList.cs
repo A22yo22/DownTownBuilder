@@ -1,9 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
+using Assets.Scripts;
 using UnityEngine;
 
 public class SaveWithList : MonoBehaviour
 {
+    //reference to some Scripts(needed to get the save data)
+    public MoneyManager moneyManager;
+    public BuildManager buildManager;
+    public camerMovment camerMovment;
+    public SetPictures setPictures;
+
     //Data to save
     //Object possition, 0=x 1=z
     public List<int> placePos;
@@ -24,6 +31,28 @@ public class SaveWithList : MonoBehaviour
 
     public void SaveGame()
     {
+        //Saves the money
+        PlayerPrefs.SetInt("money", moneyManager.money);
+
+        //Saves the Items left list
+        PlayerPrefs.SetInt("itemsLeftLength", buildManager.itemsAmount.Count);
+
+        for (int i = 0; i < buildManager.itemsAmount.Count; i++)
+        {
+            PlayerPrefs.SetInt("itemsLeft" + i, buildManager.itemsAmount[i]);
+        }
+
+        //Saves the playerPos
+        PlayerPrefs.SetFloat("x", camerMovment.transform.position.x);
+        PlayerPrefs.SetFloat("y", camerMovment.transform.position.y);
+        PlayerPrefs.SetFloat("z", camerMovment.transform.position.z);
+
+        //Saves the tutorial played bool
+        PlayerPrefs.SetInt("tutorialPlayed", boolToInt(setPictures.tutorialPlayed));
+
+
+
+
         //Saves the length of the objects so the load function can run the loop
         PlayerPrefs.SetInt("placePosLength", placePos.Count);
         PlayerPrefs.SetInt("placeRotLength", placeRot.Count);
@@ -47,7 +76,26 @@ public class SaveWithList : MonoBehaviour
     //Loads the game
     public void LoadGame()
     {
-        Debug.Log("Loded");
+        //Loads the money
+        moneyManager.money = PlayerPrefs.GetInt("money");
+
+        //Loads Items left
+        int itemsLeftLength = PlayerPrefs.GetInt("itemsLeftLength");
+
+        for (int i = 0; i < itemsLeftLength; i++)
+        {
+            buildManager.itemsAmount.Add(PlayerPrefs.GetInt("itemsLeft" + i));
+        }
+
+        //Loads Player possition
+        Vector3 pos = new Vector3(PlayerPrefs.GetFloat("x"), PlayerPrefs.GetFloat("y"), PlayerPrefs.GetFloat("z"));
+        camerMovment.transform.position = pos;
+
+        //Loads the tutorial played bool
+        setPictures.tutorialPlayed = intToBool(PlayerPrefs.GetInt("tutorialPlayed"));
+
+
+
         int posListLength = PlayerPrefs.GetInt("placePosLength");
         int rotListLength = PlayerPrefs.GetInt("placeRotLength");
 
@@ -62,5 +110,21 @@ public class SaveWithList : MonoBehaviour
             placedObject.Add(PlayerPrefs.GetString("placedObject" + i));
             itemSelectedSpw.Add(PlayerPrefs.GetInt("itemSelectedSpw" + i));
         }
+    }
+
+    int boolToInt(bool val)
+    {
+        if (val)
+            return 1;
+        else
+            return 0;
+    }
+
+    bool intToBool(int val)
+    {
+        if (val != 0)
+            return true;
+        else
+            return false;
     }
 }

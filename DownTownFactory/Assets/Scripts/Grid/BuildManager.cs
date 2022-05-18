@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Audio;
@@ -15,7 +16,7 @@ namespace Assets.Scripts
         [Header("0 = Förderband, 1 = Spawner, 2 = Seller, 3 = Crafter")]
         public int objectSelected;
         [Header("0 = Förderband, 1 = Spawner, 2 = Seller, 3 = Crafter")]
-        public int[] itemsAmount;
+        public List<int> itemsAmount;
 
         //the ID that the spawner get when he gets spawned
         public int spawnerID = 1;

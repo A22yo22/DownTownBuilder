@@ -22,9 +22,8 @@ public class SaveWithList : MonoBehaviour
     public List<string> placedObject;
 
     //Spawner item selected
+    public List<int> spawnerIDForLoading;
     public List<int> itemSelectedSpw;
-
-
 
     //Save and Loade Stuff
 
@@ -110,6 +109,13 @@ public class SaveWithList : MonoBehaviour
             placedObject.Add(PlayerPrefs.GetString("placedObject" + i));
             itemSelectedSpw.Add(PlayerPrefs.GetInt("itemSelectedSpw" + i));
         }
+    }
+
+    //Sets the spawner id and the item selected
+    public void SetSpawnerIDAndItemSelected(int spawnerID, int itemSelected)
+    {
+        spawnerIDForLoading.Add(spawnerID);
+        itemSelectedSpw.Add(itemSelected);
     }
 
     int boolToInt(bool val)

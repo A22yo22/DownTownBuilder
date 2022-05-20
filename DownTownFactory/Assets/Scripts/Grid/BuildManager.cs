@@ -182,13 +182,6 @@ namespace Assets.Scripts
         //Spawns the objects
         public void SpawnObjectsManager(int itemAmountPos, RaycastHit hit, string spawnedName = "")
         {
-            //sets the pos, rot, name
-            //placedObjectSaverManager.placePos[itemArraySelectedPos] = (int)hit.collider.gameObject.GetComponent<Manger>().gameObject.transform.position.x;
-            //placedObjectSaverManager.placePos[itemArraySelectedPos + 1] = (int)hit.collider.gameObject.GetComponent<Manger>().gameObject.transform.position.z;
-            //placedObjectSaverManager.placedRot[itemArraySelected] = (int)objectRot;
-            //placedObjectSaverManager.placedObject[itemArraySelected] = spawnedName;
-            //itemArraySelected++;
-            //itemArraySelectedPos += 2;
 
             saveWithList.placePos.Add((int)hit.collider.gameObject.GetComponent<Manger>().gameObject.transform.position.x);
             saveWithList.placePos.Add((int)hit.collider.gameObject.GetComponent<Manger>().gameObject.transform.position.z);
@@ -197,18 +190,19 @@ namespace Assets.Scripts
             if(spawnedName == "Spawner")
             {
                 saveWithList.itemSelectedSpw.Add(4);
+                hit.collider.gameObject.GetComponent<Manger>().BuildManager(objects[objectSelected], objectRot, spawnedName, 0, spawnerID);
+                spawnerID++;
             }
             else
             {
                 saveWithList.itemSelectedSpw.Add(-1);
+                hit.collider.gameObject.GetComponent<Manger>().BuildManager(objects[objectSelected], objectRot, spawnedName, 0);
             }
             
             itemsAmount[itemAmountPos]--;
             
             //Builds the object
             hit.collider.gameObject.GetComponent<Manger>().crafterItemsAmount = crafterItemsAmount;
-            hit.collider.gameObject.GetComponent<Manger>().BuildManager(objects[objectSelected], objectRot, spawnedName, 0, spawnerID);
-            spawnerID++;
 
             //sets the object in the array to access it later
             allObjectsSpawned[allObjectsSPawnedArrayCount] = objects[objectSelected];

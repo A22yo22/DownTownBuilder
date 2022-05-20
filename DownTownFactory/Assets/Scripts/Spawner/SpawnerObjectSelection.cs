@@ -52,12 +52,6 @@ public class SpawnerObjectSelection : MonoBehaviour
         }
     }
 
-    //sorts out spawner ID´s so they can be spawned corecktly
-    public void SpawnerIDSorter()
-    {
-
-    }
-
     //sets the item that the player has selected in the menue
     public void SetSpawnerItem()
     {

@@ -189,13 +189,13 @@ namespace Assets.Scripts
             saveWithList.placedObject.Add(spawnedName);
             if(spawnedName == "Spawner")
             {
-                saveWithList.itemSelectedSpw.Add(4);
                 hit.collider.gameObject.GetComponent<Manger>().BuildManager(objects[objectSelected], objectRot, spawnedName, 0, spawnerID);
                 spawnerID++;
+                saveWithList.itemSelectedSpw.Add(4);
+                saveWithList.spawnerIDForLoading.Add(spawnerID);
             }
             else
             {
-                saveWithList.itemSelectedSpw.Add(-1);
                 hit.collider.gameObject.GetComponent<Manger>().BuildManager(objects[objectSelected], objectRot, spawnedName, 0);
             }
             

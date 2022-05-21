@@ -5,6 +5,9 @@ using TMPro;
 
 public class SpawnerObjectSelection : MonoBehaviour
 {
+    //reference to the SaveWithList Script
+    public SaveWithList saveWithList;
+
     //the selected object in the spawner
     public int itemSeleted;
 
@@ -48,7 +51,7 @@ public class SpawnerObjectSelection : MonoBehaviour
             }
         }
     }
-    
+
     //sets the item that the player has selected in the menue
     public void SetSpawnerItem()
     {
@@ -61,6 +64,7 @@ public class SpawnerObjectSelection : MonoBehaviour
         itemSeleted = 0;
         itemSlecetedInMenue.text = "Aluminium";
         SetSpawnerItem();
+        saveWithList.SetSpawnerIDAndItemSelected(spawnerOBJ.GetComponent<SpawnManagerObject>().spawnerID, itemSeleted);
     }
     
     //sets the item to spawn to Wood
@@ -69,6 +73,7 @@ public class SpawnerObjectSelection : MonoBehaviour
         itemSeleted = 1;
         itemSlecetedInMenue.text = "Wood";
         SetSpawnerItem();
+        saveWithList.SetSpawnerIDAndItemSelected(spawnerOBJ.GetComponent<SpawnManagerObject>().spawnerID, itemSeleted);
     }
     
     //sets the item to spawn to Diamond
@@ -77,6 +82,7 @@ public class SpawnerObjectSelection : MonoBehaviour
         itemSeleted = 2;
         itemSlecetedInMenue.text = "Diamond";
         SetSpawnerItem();
+        saveWithList.SetSpawnerIDAndItemSelected(spawnerOBJ.GetComponent<SpawnManagerObject>().spawnerID, itemSeleted);
     }
     
     //sets the item to spawn to Gold
@@ -85,6 +91,7 @@ public class SpawnerObjectSelection : MonoBehaviour
         itemSeleted = 3;
         itemSlecetedInMenue.text = "Gold";
         SetSpawnerItem();
+        saveWithList.SetSpawnerIDAndItemSelected(spawnerOBJ.GetComponent<SpawnManagerObject>().spawnerID, itemSeleted);
     }
     
     //sets the item to spawn to Iron
@@ -93,5 +100,6 @@ public class SpawnerObjectSelection : MonoBehaviour
         itemSeleted = 4;
         itemSlecetedInMenue.text = "Iron";
         SetSpawnerItem();
+        saveWithList.SetSpawnerIDAndItemSelected(spawnerOBJ.GetComponent<SpawnManagerObject>().spawnerID, itemSeleted);
     }
 }

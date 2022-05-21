@@ -31,7 +31,7 @@ public class UiManager : MonoBehaviour
                 x = false;
                 settingsMenue.SetActive(false);
             }
-            else
+            else 
             {
                 //enabeld the settings
                 x = true;
@@ -39,7 +39,7 @@ public class UiManager : MonoBehaviour
             }
         }
     }
-    
+
     //opens the build menue
     public void SetBuildMode()
     {

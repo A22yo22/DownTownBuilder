@@ -26,24 +26,6 @@ public class SaveAndLoadManager : MonoBehaviour
     public void Load()
     {
         SaveWithList.LoadGame();
-        //Creats a new PlayerData object
-        //PlayerData data = SaveSystem.loadPlayer();
-        
-        //here the saved data of the player gets loaded in the right variables of script plcedObjectSaverManaer
-        /*moneyManager.SetMoney(data.money);
-        buildManager.itemsAmount = data.itemsLeft;
-        camerMovment.transform.position = new Vector3(data.pos[0], data.pos[1], data.pos[2]);
-        setPictures.tutorialPlayed = data.tutorialPlayed;
-
-        buildManager.itemArraySelected = data.itemsArraySelected;
-        buildManager.itemArraySelectedPos = data.itemsArraySelectedPos;
-
-        //loads the pos, rot, names and Selected items of the player in the variables of script plcedObjectSaverManaer
-        placedObjectSaverManager.placePos = data.placePos;
-        placedObjectSaverManager.placedRot = data.placedRot;
-        placedObjectSaverManager.placedObject = data.placedObject;
-        placedObjectSaverManager.itemSelectedSpw = data.itemSelectedSpw;
-        */
 
         //spawns the mashines
         spawnObjects(SaveWithList.placePos, SaveWithList.placeRot, SaveWithList.placedObject, SaveWithList.itemSelectedSpw);
@@ -52,6 +34,7 @@ public class SaveAndLoadManager : MonoBehaviour
     //this function spawns the mashines with the right data in them as they were when saved
     public void spawnObjects(List<int> placePos, List<int> placeRot, List<string> placedObject, List<int> itemSelectedSpw)
     {
+        Debug.Log("Spawn");
         int x = 0;
         int rot = 0;
 
@@ -82,12 +65,10 @@ public class SaveAndLoadManager : MonoBehaviour
                             //set placePos 0 and 1 to 0/null
                             SaveWithList.placePos.RemoveAt(i-2);
                             SaveWithList.placePos.RemoveAt(i-2);
-                            Debug.Log(i - 2);
 
                             //the same to the rotation and divided by 2 because i is every loop plus 2
                             //and divided by 2 is the right arry point
                             SaveWithList.placeRot.RemoveAt(i / 2);
-                            Debug.Log(i / 2);
 
                             //the name is also set to null
                             SaveWithList.placedObject.RemoveAt(i / 2);
@@ -108,6 +89,8 @@ public class SaveAndLoadManager : MonoBehaviour
                 rot++;
                 x++;
             }
+
+            Debug.Log(placePos[i - 2]);
 
             //spawn next mashine
             if (Physics.Raycast(new Vector3(placePos[i-2], 1, placePos[i - 1]), -Vector3.up, out RaycastHit hit, Mathf.Infinity, 6))

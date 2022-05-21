@@ -190,9 +190,9 @@ namespace Assets.Scripts
             if(spawnedName == "Spawner")
             {
                 hit.collider.gameObject.GetComponent<Manger>().BuildManager(objects[objectSelected], objectRot, spawnedName, 0, spawnerID);
-                spawnerID++;
-                saveWithList.itemSelectedSpw.Add(4);
                 saveWithList.spawnerIDForLoading.Add(spawnerID);
+                spawnerID++;
+                saveWithList.itemSelectedSpw.Add(0);
             }
             else
             {

@@ -55,6 +55,7 @@ public class SaveWithList : MonoBehaviour
         //Saves the length of the objects so the load function can run the loop
         PlayerPrefs.SetInt("placePosLength", placePos.Count);
         PlayerPrefs.SetInt("placeRotLength", placeRot.Count);
+        PlayerPrefs.SetInt("spawnerIDLength", spawnerIDForLoading.Count);
 
         //Saves the Lists
         //Can´t be used because the placePos has two times as much plces as the other lists
@@ -68,6 +69,12 @@ public class SaveWithList : MonoBehaviour
         {
             PlayerPrefs.SetInt("placeRot" + i, placeRot[i]);
             PlayerPrefs.SetString("placedObject" + i, placedObject[i]);
+        }
+
+        //needs a single one because the rot is added even when the spawner isn´t played
+        for(int i = 0; i < spawnerIDForLoading.Count; i++)
+        {
+            PlayerPrefs.SetInt("spawnerIDForLoading" + i, spawnerIDForLoading[i]);
             PlayerPrefs.SetInt("itemSelectedSpw" + i, itemSelectedSpw[i]);
         }
     }
@@ -97,6 +104,7 @@ public class SaveWithList : MonoBehaviour
 
         int posListLength = PlayerPrefs.GetInt("placePosLength");
         int rotListLength = PlayerPrefs.GetInt("placeRotLength");
+        int spawnerIDLength = PlayerPrefs.GetInt("spawnerIDLength");
 
         for(int i = 0; i < posListLength; i++)
         {
@@ -107,6 +115,11 @@ public class SaveWithList : MonoBehaviour
         {
             placeRot.Add(PlayerPrefs.GetInt("placeRot" + i));
             placedObject.Add(PlayerPrefs.GetString("placedObject" + i));
+        }
+
+        for(int i = 0; i < spawnerIDLength; i++)
+        {
+            itemSelectedSpw.Add(PlayerPrefs.GetInt("spawnerIDForLoading" + i));
             itemSelectedSpw.Add(PlayerPrefs.GetInt("itemSelectedSpw" + i));
         }
     }
@@ -114,7 +127,7 @@ public class SaveWithList : MonoBehaviour
     //sorts out spawner ID´s so they can be spawned corecktly
     public void SpawnerIDSorter()
     {
-        for(int i = 0; i < spawnerIDForLoading.Count; i++)
+        for(int i = 1; i < spawnerIDForLoading.Count; i++)
         {
             //saves spawner id for chenking in a sec
             int spawnerID = spawnerIDForLoading[i];
@@ -126,8 +139,8 @@ public class SaveWithList : MonoBehaviour
                 {
                     if(spawnerID == spawnerIDForLoading[i2])
                     {
-                        Debug.Log(spawnerIDForLoading[spawnerID]);
-                        Debug.Log(itemSelectedSpw[spawnerID]);
+                        Debug.Log(spawnerIDForLoading[i]);
+                        Debug.Log(itemSelectedSpw[i]);
                         spawnerIDForLoading.RemoveAt(spawnerID);
                         itemSelectedSpw.RemoveAt(spawnerID);
                     }

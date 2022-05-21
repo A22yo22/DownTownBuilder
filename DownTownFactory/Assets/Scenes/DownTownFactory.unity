@@ -2804,6 +2804,53 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 185313300}
   m_CullTransparentMesh: 1
+--- !u!1 &188621435
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 188621437}
+  - component: {fileID: 188621436}
+  m_Layer: 0
+  m_Name: Spawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &188621436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 188621435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 941b60862ebbeb74e84a9a771db2baa2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Tile: {fileID: 8756242968142350601, guid: 5bfa84e07f7a07642a5a542c896ecccc, type: 3}
+  TilleSize: {x: 50, y: 50}
+  saveAndLoadManager: {fileID: 1905711078}
+--- !u!4 &188621437
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 188621435}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &195357566
 GameObject:
   m_ObjectHideFlags: 0
@@ -34313,7 +34360,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1905711071}
   - component: {fileID: 1905711072}
-  - component: {fileID: 1905711075}
   - component: {fileID: 1905711074}
   - component: {fileID: 1905711073}
   - component: {fileID: 1905711076}
@@ -34392,21 +34438,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moneyText: {fileID: 1880281667}
   money: 0
---- !u!114 &1905711075
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1905711070}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 941b60862ebbeb74e84a9a771db2baa2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Tile: {fileID: 8756242968142350601, guid: 5bfa84e07f7a07642a5a542c896ecccc, type: 3}
-  TilleSize: {x: 50, y: 50}
-  saveAndLoadManager: {fileID: 1905711078}
 --- !u!114 &1905711076
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34495,6 +34526,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23d5ec91882e76d41bc9e1103444a499, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moneyManager: {fileID: 0}
+  buildManager: {fileID: 0}
+  camerMovment: {fileID: 0}
+  setPictures: {fileID: 0}
   placePos: 
   placeRot: 
   placedObject: []

@@ -127,20 +127,23 @@ public class SaveWithList : MonoBehaviour
     //sorts out spawner ID´s so they can be spawned corecktly
     public void SpawnerIDSorter()
     {
-        for(int i = 1; i < spawnerIDForLoading.Count; i++)
+        for(int i = 0; i < spawnerIDForLoading.Count; i++)
         {
             //saves spawner id for chenking in a sec
             int spawnerID = spawnerIDForLoading[i];
+
+            Debug.Log("spawnerID: " + spawnerID);
+            Debug.Log("spawnerIDLength: " + spawnerIDForLoading.Count);
+
             bool pased = false;
 
             for(int i2 = 0; i < spawnerIDForLoading.Count; i++)
             {
-                if (pased)
+                if(spawnerID == spawnerIDForLoading[i2])
                 {
-                    if(spawnerID == spawnerIDForLoading[i2])
+                    if (pased)
                     {
-                        Debug.Log(spawnerIDForLoading[i]);
-                        Debug.Log(itemSelectedSpw[i]);
+                        Debug.Log(spawnerID + " == " + spawnerIDForLoading[i2]);
                         spawnerIDForLoading.RemoveAt(spawnerID);
                         itemSelectedSpw.RemoveAt(spawnerID);
                     }

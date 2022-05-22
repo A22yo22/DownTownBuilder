@@ -65,7 +65,6 @@ namespace Assets.Scripts
             yield return new WaitForSeconds(10);
             saveAndLoadManager.Save();
             StartCoroutine(SaveTimer());
-            Debug.Log("Saved");
         }
     }
 }

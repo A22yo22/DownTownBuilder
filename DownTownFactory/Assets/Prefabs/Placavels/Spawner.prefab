@@ -232,6 +232,7 @@ MonoBehaviour:
   spawnerID: 0
   itemSeleted: 4
   spawnPos: {fileID: 4075155889544175743}
+  animator: {fileID: 4738873865259982336}
 --- !u!95 &4738873865259982336
 Animator:
   serializedVersion: 4

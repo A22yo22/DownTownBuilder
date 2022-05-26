@@ -24,14 +24,14 @@ public class SpawnManagerObject : MonoBehaviour
     {
         //starts the spawner
         StartCoroutine(StoneSPawner());
-
-        //gets the animator
-        animator = GetComponent<Animator>();
     }
     
     //function to spawn the items
     private IEnumerator StoneSPawner()
     {
+        //starts the spawn animation
+        animator.SetBool("toSpawn", true);
+
         //waits 2 seconds before spawning
         yield return new WaitForSeconds(2);
         //spawns the item
@@ -64,8 +64,9 @@ public class SpawnManagerObject : MonoBehaviour
                 break;
         }
 
-        //starts the spawn animation
-        animator.SetBool("toSpawn", true);
+        //stops the spawn animation
+        animator.SetBool("toIdle", true);
+
 
         //starts the loop again
         StartCoroutine(StoneSPawner());

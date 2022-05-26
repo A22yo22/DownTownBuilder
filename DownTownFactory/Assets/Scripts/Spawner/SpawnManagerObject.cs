@@ -17,10 +17,16 @@ public class SpawnManagerObject : MonoBehaviour
     //possition where the item gets spawned
     public Transform spawnPos;
 
+    //sets animator as the main animator
+    public Animator animator;
+
     private void Start()
     {
         //starts the spawner
         StartCoroutine(StoneSPawner());
+
+        //gets the animator
+        animator = GetComponent<Animator>();
     }
     
     //function to spawn the items
@@ -57,6 +63,10 @@ public class SpawnManagerObject : MonoBehaviour
                 x.GetComponent<Rigidbody>().AddForce(Vector3.left * 6f, ForceMode.Impulse);
                 break;
         }
+
+        //starts the spawn animation
+        animator.SetBool("toSpawn", true);
+
         //starts the loop again
         StartCoroutine(StoneSPawner());
     }

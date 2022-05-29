@@ -48,6 +48,7 @@ public class SetPictures : MonoBehaviour
                 {
                     x++;
                     image.GetComponent<Image>().sprite = images[x];
+                    Debug.Log(x);
                 }
                 else
                 {

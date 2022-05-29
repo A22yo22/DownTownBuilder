@@ -17,8 +17,8 @@ public class SpawnManagerObject : MonoBehaviour
     //possition where the item gets spawned
     public Transform spawnPos;
 
-    //sets animator as the main animator
-    public Animator animator;
+    //gets the Animator
+    public Animator spawnAnimation;
 
     private void Start()
     {
@@ -61,8 +61,8 @@ public class SpawnManagerObject : MonoBehaviour
                 break;
         }
 
-        //starts the spawn animation
-        animator.SetBool("toSpawn", true);
+        //starts the spawn Animation
+        spawnAnimation.Play("SpawnAnimation", 0, 0.0f);
 
         //starts the loop again
         StartCoroutine(StoneSPawner());

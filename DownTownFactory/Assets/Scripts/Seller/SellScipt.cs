@@ -16,6 +16,8 @@ public class SellScipt : MonoBehaviour
     
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log("Sells item");
+
         //gets the item thats going to get saild
         int x = other.GetComponent<Worth>().worth;
         //adds the items worth to money

@@ -46,7 +46,10 @@ public class CraftScript : MonoBehaviour
 
     //the time an item needs to spawn
     public int timeToWait;
-    
+
+    //gets the Animator
+    public Animator spawnAnimation;
+
     private void OnTriggerEnter(Collider other)
     {
         //test the item that enter who it is and adds ist to the item list
@@ -120,7 +123,11 @@ public class CraftScript : MonoBehaviour
     
     private void WaitThanSpawn(GameObject spawnOBJ)
     {
-        audioLister.Play();
+        //audioLister.Play();
+
+        //starts the spawn Animation
+        spawnAnimation.Play("SpawnAnimation", 0, 0.0f);
+
         spawnOBJ = Instantiate(spawnOBJ);
         spawnOBJ.transform.position = spwanPos.position;
         switch (transform.rotation.y)
